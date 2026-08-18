@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="Logo" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="libros.html">Libros ▾</a>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+   <section class="seccion-busqueda">
+    <div class="contenedor-busqueda-avanzada">
+        <div class="grid-formulario">
+            <div class="campo">
+                <label>Título</label>
+                <input type="text" id="busq-titulo">
+            </div>
+            <div class="campo">
+                <label>Autor</label>
+                <input type="text" id="busq-autor">
+            </div>
+            <div class="campo">
+                <label>Año de publicación</label>
+                <input type="text" id="busq-anio">
+            </div>
+            <div class="campo">
+                <label>Editorial</label>
+                <input type="text" id="busq-editorial">
+            </div>
+            <div class="campo">
+                <label>Materia</label>
+                <input type="text" id="busq-materia">
+            </div>
+        </div>
+
+        <div class="accion-buscar">
+            <button id="btn-buscar">Buscar</button>
+        </div>
+    </div>
+</section>
+
+<div id="resultados-busqueda" class="contenedor-resultados"></div>
+
+<div id="resultados-busqueda" class="contenedor-resultados"></div>
+
+<div id="resultados-busqueda" class="grid-libros"></div>
+
+<script>
+    const biblioteca = {
+        'ladrones-arte': { titulo: 'Ladrones de Arte', autor: 'Trigo, Ana', precio: 220, imagen: 'IMG/ladronesdelartes.jpg' },
+        'camino-artista': { titulo: 'El Camino del Artista', autor: 'Cameron, Julia', precio: 295, imagen: 'IMG/elcaminodelartista.jpg' },
+        'arte-crear': { titulo: 'El Arte de Crear', autor: 'Nguyen, Joseph', precio: 240, imagen: 'IMG/elartedecrear.jpg' },
+        'mundo-reves': { titulo: 'El Mundo del Revés', autor: 'Moser, Benjamin', precio: 355, imagen: 'IMG/elmundodelreves.jpg' },
+        'entender-arte': { titulo: 'El Arte de Entender el Arte', autor: 'Bryan, Kate', precio: 285, imagen: 'IMG/elartesdeentenderelarte.jpg' },
+        'mirar-cielos': { titulo: 'Mirar los Cielos', autor: 'Villar Martín, Montserrat', precio: 285, imagen: 'IMG/mirarloscielos.jpg' },
+        'contra-arte': { titulo: 'Contra el Arte', autor: 'Maillard, Chantal', precio: 265, imagen: 'IMG/contraelarte.jpg' },
+        'vivir-camino': { titulo: 'Vivir el Camino del Artista', autor: 'Cameron, Julia', precio: 160, imagen: 'IMG/vivirelcaminodelartista.jpg' }
+    };
+
+    document.getElementById('btn-buscar').onclick = () => {
+        const textoBusqueda = document.getElementById('busq-titulo').value.toLowerCase();
+        const contenedor = document.getElementById('resultados-busqueda');
+
+        const encontrados = Object.keys(biblioteca).filter(id => 
+            biblioteca[id].titulo.toLowerCase().includes(textoBusqueda) || 
+            biblioteca[id].autor.toLowerCase().includes(textoBusqueda)
+        );
+contenedor.innerHTML = encontrados.map(id => `
+    <div class="tarjeta-libro">
+        <a href="detalle.html?id=${id}" style="text-decoration:none; color:inherit;">
+            <img src="${biblioteca[id].imagen}" alt="${biblioteca[id].titulo}" 
+                 style="width: 180px; height: 250px; object-fit: contain; border-radius: 8px;">
+            <h3 style="margin: 10px 0 5px 0; font-size: 16px;">${biblioteca[id].titulo}</h3>
+            <p style="margin: 0; color: #666; font-size: 14px;">${biblioteca[id].autor}</p>
+            <p style="margin: 5px 0; color: #000;"><b>Q${biblioteca[id].precio}</b></p>
+        </a>
+    </div>
+`).join('');
+    };
+
+     cdocument.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+</script>
+</body>
+</html>

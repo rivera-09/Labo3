@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Librería</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="Logo" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="libros.html">Libros ▾</a></li>
+            <li><a href="busqueda.html">Búsqueda Avanzada</a></li>
+            <li><a href="carrito.html" class="link-activo">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor-carrito">
+        <h1>Mi Carrito de Compras</h1>
+        
+        <div id="lista-carrito">
+            </div>
+
+        <div id="seccion-finalizar-compra" style="display: none;">
+            <div class="total-caja">
+                Total a pagar: <span id="precio-total">Q0.00</span>
+            </div>
+
+            <form id="form-pedido" action="https://formspree.io/f/xjglqkro" method="POST" class="formulario-pedido">
+                <h3>Datos para la entrega</h3>
+                
+                <div class="campo-pedido">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombre" required placeholder="Tu nombre">
+                </div>
+
+                <div class="campo-pedido">
+                    <label>Dirección de Entrega</label>
+                    <input type="text" name="direccion" required placeholder="Calle, zona, No. de casa">
+                </div>
+
+                <div class="campo-pedido">
+                    <label>Número de Teléfono</label>
+                    <input type="tel" name="telefono" required placeholder="Ej: 5555-4444">
+                </div>
+
+                <div class="campo-pedido">
+                    <label>Método de Pago</label>
+                    <select name="metodo_pago" required>
+                        <option value="Efectivo al recibir">Efectivo al recibir (Contra entrega)</option>
+                        <option value="Tarjeta">Tarjeta de Crédito / Débito</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="_subject" value="Nuevo Pedido de Librería">
+                <input type="hidden" name="detalle_pedido" id="input-detalle-pedido">
+                <input type="hidden" name="total_pedido" id="input-total-final">
+
+                <button type="submit" class="btn-enviar-pedido">Confirmar y Enviar Pedido</button>
+            </form>
+
+            <button class="btn-vaciar-enlace" id="btn-vaciar">Vaciar carrito</button>
+        </div>
+    </div>
+
+    <script>
+        function cargarCarrito() {
+            const lista = document.getElementById('lista-carrito');
+            const seccionFinal = document.getElementById('seccion-finalizar-compra');
+            const totalTxt = document.getElementById('precio-total');
+            const inputDetalle = document.getElementById('input-detalle-pedido');
+            const inputTotalFinal = document.getElementById('input-total-final');
+
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            if (carrito.length === 0) {
+                lista.innerHTML = `<div class="carrito-vacio">Tu carrito está vacío. <br><a href="libros.html">Ir a comprar</a></div>`;
+                seccionFinal.style.display = "none";
+                return;
+            }
+
+            seccionFinal.style.display = "block";
+            let total = 0;
+            let textoPedido = "";
+
+            lista.innerHTML = carrito.map((libro, index) => {
+                let precio = parseFloat(String(libro.precio).replace(/[^\d.]/g, ''));
+                total += precio;
+                textoPedido += `- ${libro.titulo} (Q${precio})\n`;
+
+                return `
+                    <div class="item-carrito">
+                        <img src="${libro.imagen}" alt="${libro.titulo}">
+                        <div class="info-item">
+                            <h3>${libro.titulo}</h3>
+                            <p>Precio: Q${precio.toFixed(2)}</p>
+                        </div>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">🗑️</button>
+                    </div>
+                `;
+            }).join('');
+
+            totalTxt.innerText = `Q${total.toFixed(2)}`;
+            inputDetalle.value = textoPedido;
+            inputTotalFinal.value = `Q${total.toFixed(2)}`;
+        }
+
+        function eliminarDelCarrito(index) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            cargarCarrito();
+        }
+
+        document.getElementById('form-pedido').addEventListener('submit', () => {
+            setTimeout(() => { localStorage.removeItem('carrito'); }, 1000);
+        });
+
+        document.getElementById('btn-vaciar').onclick = () => {
+            if(confirm("¿Vaciar todo el carrito?")) {
+                localStorage.removeItem('carrito');
+                cargarCarrito();
+            }
+        };
+
+        cargarCarrito();
+
+        document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+    </script>
+</body>
+</html>

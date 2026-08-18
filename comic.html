@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" id="btn-libros">Libros ▾</a>
+                <ul class="dropdown-content" id="menu-libros">
+                    <li><a href="artes.html">Artes</a></li>
+                    <li><a href="comic.html">Cómic</a></li>
+                    <li><a href="novela.html">Novela</a></li>
+                </ul>
+            </li>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor-principal">
+        <h1>Cómic</h1>
+        
+        <div class="seccion-libros-grid">
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/misteriosinsondables.jpg" alt="Misterios Insondables" class="img-portada">
+                    </div>
+                <h3>Misterios Insondables</h3>
+                <p>Jean-Jacques Sempe</p>
+                <span>Q120.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/nadaesfacil.jpg" alt="Nada Es Fácil" class="img-portada">
+                    </div>
+                <h3>Nada Es Fácil</h3>
+                <p>Jean-Jacques Semp</p>
+                <span>Q120.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/eldisturbioeterno.jpg" alt="El Disturbio Eterno" class="img-portada">
+                    </div>
+                <h3>El Disturbio Eterno</h3>
+                <p>Sacco, Joe</p>
+                <span>Q275.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/rosa.jpg" alt="Rosa" class="img-portada">
+                    </div>
+                <h3>Rosa</h3>
+                <p>Casas, Alfonso</p>
+                <span>Q275.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/simplecuestiondeequilibrio.jpg" alt="Simple Cuestión de Equilibrio" class="img-portada">
+                    </div>
+                <h3>Simple Cuestión de Equilibrio</h3>
+                <p>Jean-Jacques Sempe</p>
+                <span>Q120.00</span>
+            </div>
+            
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/envela.jpg" alt="En Vela" class="img-portada">
+                    </div>
+                <h3>En Vela</h3>
+                <p>Penyas, Ana</p>
+                <span>Q310.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/fisicaparagatos.jpg" alt="Física para Gatos" class="img-portada">
+                    </div>
+                <h3>Física para Gatos</h3>
+                <p>Gauld, Tom</p>
+                <span>Q265.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/humanos.jpg" alt="Humanos" class="img-portada">
+                    </div>
+                <h3>Humanos</h3>
+                <p>Schädlich, Susan / Stang, Michael</p>
+                <span>Q230.00</span>
+
+        </div>
+    </main>
+
+    <script>
+        const btn = document.getElementById('btn-libros');
+        const menu = document.getElementById('menu-libros');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            menu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            menu.classList.remove('show');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

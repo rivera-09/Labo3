@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artes</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" id="btn-libros">Libros ▾</a>
+                <ul class="dropdown-content" id="menu-libros">
+                    <li><a href="artes.html">Artes</a></li>
+                    <li><a href="comic.html">Cómic</a></li>
+                    <li><a href="novela.html">Novela</a></li>
+                </ul>
+            </li>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor-principal">
+    <h1>Artes</h1>
+
+    <div class="seccion-libros-grid">
+        
+        <div class="tarjeta-libro">
+            <a href="detalle.html?id=ladrones-arte" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/ladronesdelartes.jpg" alt="Ladrones de Arte" class="img-portada">
+                    </div>
+                <h3>Ladrones de Arte</h3>
+                <p>Trigo, Ana</p>
+                <span>Q220.00</span>
+            </a>
+        </div>
+
+        <div class="tarjeta-libro">
+            <a href="detalle.html?id=camino-artista" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/elcaminodelartista.jpg" alt="El Camino del Artista" class="img-portada">
+                    </div>
+                <h3>El Camino del Artista (Edición Especial en Tapa Dura y Bitono)</h3>
+                <p>Cameron, Julia</p>
+                <span>Q295.00</span>
+                </a>
+        </div>
+
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=arte-crear" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/elartedecrear.jpg" alt="El Arte de Crear" class="img-portada">
+                    </div></a>
+                <h3>El Arte de Crear</h3>
+                <p>Nguyen, Joseph</p>
+                <span>Q240.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=mundo-reves" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/elmundodelreves.jpg" alt="El Mundo del Revés" class="img-portada">
+                    </div></a>
+                <h3>El Mundo del Revés</h3>
+                <p>Moser, Benjamin</p>
+                <span>Q355.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=entender-arte" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/elartesdeentenderelarte.jpg" alt="El Arte de Entender el Arte" class="img-portada">
+                    </div></a>
+                <h3>El Arte de Entender el Arte</h3>
+                <p>Bryan, Kate</p>
+                <span>Q285.00</span>
+            </div>
+            
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=mirar-cielos" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/mirarloscielos.jpg" alt="Mirar los Cielos" class="img-portada">
+                    </div></a>
+                <h3>Mirar los Cielos</h3>
+                <p>Villar Martín, Montserrat</p>
+                <span>Q285.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=contra-arte" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/contraelarte.jpg" alt="Contra el Arte" class="img-portada">
+                    </div></a>
+                <h3>Contra el Arte</h3>
+                <p>Maillard, Chantal</p>
+                <span>Q265.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <a href="detalle.html?id=vivir-camino" style="text-decoration: none; color: inherit;">
+                <div class="portada-placeholder">
+                <img src="IMG/vivirelcaminodelartista.jpg" alt="Vivir el Camino del Artista" class="img-portada">
+                    </div></a>
+                <h3>Vivir el Camino del Artista</h3>
+                <p>Cameron, Julia</p>
+                <span>Q160.00</span>
+
+            </div>
+        </div>
+    </main>
+
+<script>
+    const btn = document.getElementById('btn-libros');
+    const menu = document.getElementById('menu-libros');
+
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function() {
+        menu.classList.remove('show');
+    });
+
+     document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

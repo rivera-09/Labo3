@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="" class="logo-img">
+        </a>
+    </header>
+
+   <nav class="nav-negra">
+    <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="libros.html">Libros ▾</a>
+            <li><a href="promocion.html">Promociones</a></li>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+    <div class="contenedor-detalle">
+    <div class="detalle-grid">
+        <div class="detalle-imagen">
+            <img id="foto-libro" src="" alt="Portada del libro">
+        </div>
+
+        <div class="detalle-info">
+            <h1 id="titulo-libro"></h1>
+            <h2 id="autor-libro" class="autor-texto"></h2>
+            <p class="precio-detalle">Precio: <span id="precio-libro"></span></p>
+            
+            <div class="descripcion">
+                <h3>Sinopsis</h3>
+                <p id="sinopsis-libro">Cargando descripción...</p>
+            </div>
+
+            <button class="btn-agregar">Agregar al carrito</button>
+        </div>
+    </div>
+</div>
+</main>
+
+<script>
+    const biblioteca = {
+        'ladrones-arte': { titulo: 'Ladrones de Arte', autor: 'Trigo, Ana', precio: 'Q220', imagen: 'IMG/ladronesdelartes.jpg', sinopsis: 'Una intriga fascinante sobre el mundo del arte y sus secretos más oscuros.' },
+        'camino-artista': { titulo: 'El Camino del Artista', autor: 'Cameron, Julia', precio: 'Q295', imagen: 'IMG/elcaminodelartista.jpg', sinopsis: 'Un método para liberar la creatividad y superar los bloqueos artísticos.' },
+        'arte-crear': { titulo: 'El Arte de Crear', autor: 'Nguyen, Joseph', precio: 'Q240', imagen: 'IMG/elartedecrear.jpg', sinopsis: 'Una guía práctica para transformar tus ideas en realidad.' },
+        'mundo-reves': { titulo: 'El Mundo del Revés', autor: 'Moser, Benjamin', precio: 'Q355', imagen: 'IMG/elmundodelreves.jpg', sinopsis: 'Una exploración profunda sobre las paradojas de la vida moderna.' },
+        'entender-arte': { titulo: 'El Arte de Entender el Arte', autor: 'Bryan, Kate', precio: 'Q285', imagen: 'IMG/elartesdeentenderelarte.jpg', sinopsis: 'Cómo apreciar las obras maestras desde una perspectiva nueva.' },
+        'mirar-cielos': { titulo: 'Mirar los Cielos', autor: 'Villar Martín, Montserrat', precio: 'Q285', imagen: 'IMG/mirarloscielos.jpg', sinopsis: 'Un viaje astronómico para comprender nuestro lugar en el universo.' },
+        'contra-arte': { titulo: 'Contra el Arte', autor: 'Maillard, Chantal', precio: 'Q265', imagen: 'IMG/contraelarte.jpg', sinopsis: 'Un ensayo crítico sobre la estética y la expresión contemporánea.' },
+        'vivir-camino': { titulo: 'Vivir el Camino del Artista', autor: 'Cameron, Julia', precio: 'Q160', imagen: 'IMG/vivirelcaminodelartista.jpg', sinopsis: 'Ejercicios diarios para mantener viva la llama de la creatividad.' }
+    };
+
+    const parametros = new URLSearchParams(window.location.search);
+    const libroID = parametros.get('id') || 'ladrones-arte'; 
+
+    const datosLibro = biblioteca[libroID];
+
+    document.getElementById('titulo-libro').innerText = datosLibro.titulo;
+    document.getElementById('autor-libro').innerText = `por ${datosLibro.autor}`;
+    document.getElementById('precio-libro').innerText = datosLibro.precio;
+    document.getElementById('foto-libro').src = datosLibro.imagen;
+    document.getElementById('sinopsis-libro').innerText = datosLibro.sinopsis;
+
+const btnAgregar = document.querySelector('.btn-agregar');
+
+btnAgregar.addEventListener('click', () => {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    const producto = {
+        id: libroID,
+        titulo: datosLibro.titulo,
+        precio: datosLibro.precio,
+        imagen: datosLibro.imagen
+    };
+
+    carrito.push(producto);
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    alert(`¡"${datosLibro.titulo}" se ha agregado al carrito!`);
+    
+    console.log('Carrito actual:', carrito);
+});
+
+ document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+</script>
+</body>
+</html>
