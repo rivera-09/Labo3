@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Librería en Línea</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body bgcolor="#EDECE1">
+    <header class="header-logo">
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="Logo" class="logo-img">
+        </a>
+    </div>
+</header>
+    <div class="navbar">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+        <div class="logo"></div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="libros.html">Libros ▾</a></li>
+            <li><a href="busqueda.html">Búsqueda Avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </div>
+    <section class="contenedor-banner">
+    <a href="promociones.html">
+        <img src="IMG/promo1.png" alt="Promoción Especial" class="banner-img">
+    </a>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+</script>
+</script>
+</body>
+</html>

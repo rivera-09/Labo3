@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="Logo" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" id="btn-libros">Libros ▾</a>
+                <ul class="dropdown-content" id="menu-libros">
+                    <li><a href="artes.html">Artes</a></li>
+                    <li><a href="comic.html">Cómic</a></li>
+                    <li><a href="novela.html">Novela</a></li>
+                </ul>            
+            </li>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+    <section class="contenedor-banner">
+    <img src="IMG/promolibros.png" alt="Promoción Especial" class="banner-img">
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+</script>
+</body>
+</html>

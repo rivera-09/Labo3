@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novela</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="IMG/logo.png" alt="" class="logo-img">
+        </a>
+    </header>
+
+    <nav class="nav-negra">
+        <div class="menu-hamburguesa" id="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+        <ul id="nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#" id="btn-libros">Libros ▾</a>
+                <ul class="dropdown-content" id="menu-libros">
+                    <li><a href="artes.html">Artes</a></li>
+                    <li><a href="comic.html">Cómic</a></li>
+                    <li><a href="novela.html">Novela</a></li>
+                </ul>
+            </li>
+            <li><a href="busqueda.html">Búsqueda avanzada</a></li>
+            <li><a href="carrito.html">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor-principal">
+        <h1>Novela</h1>
+        
+        <div class="seccion-libros-grid">
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/gentequeconocemosen.jpg" alt="Gente que Conocemos en Vacaciones (Tie-In)" class="img-portada">
+                    </div>
+                <h3>Gente que Conocemos en Vacaciones (Tie-In)</h3>
+                <p>Henry, Emily</p>
+                <span>Q190.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/unacanciondeamorpara.jpg" alt="Una Canción de Amor para Ricki Wilde" class="img-portada">
+                    </div>
+                <h3>Una Canción de Amor para Ricki Wilde</h3>
+                <p>Williams, Tia</p>
+                <span>Q230.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/cuandocaigalanieve.jpg" alt="Cuando Caiga la Nieve" class="img-portada">
+                    </div>
+                <h3>Cuando Caiga la Nieve</h3>
+                <p>Grace, Hannah</p>
+                <span>Q260.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/aladerivacontigo.jpg" alt="A la Deriva Contigo" class="img-portada">
+                    </div>
+                <h3>A la Deriva Contigo</h3>
+                <p>O'leary, Beth</p>
+                <span>Q260.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/elsonidodelamor.jpg" alt="El Sonido del Amor" class="img-portada">
+                    </div>
+                <h3>El Sonido del Amor</h3>
+                <p>Ashley Poston</p>
+                <span>Q170.00</span>
+            </div>
+            
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/lascosasmaspreciosas.jpg" alt="Las Cosas Más Preciosas" class="img-portada">
+                    </div>
+                <h3>Las Cosas Más Preciosas</h3>
+                <p>Yarros, Rebecca</p>
+                <span>Q230.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/infinito.webp" alt="Infinito" class="img-portada">
+                    </div>
+                <h3>Infinito</h3>
+                <p>Prieto, Phavy</p>
+                <span>Q275.00</span>
+            </div>
+
+            <div class="tarjeta-libro">
+                <div class="portada-placeholder">
+                <img src="IMG/lamaldiciondelsiquiero.jpg" alt="La Maldición del sí Quiero" class="img-portada">
+                    </div>
+                <h3>La Maldición del sí Quiero</h3>
+                <p>Mola, Jose</p>
+                <span>Q260.00</span>
+
+        </div>
+    </main>
+
+    <script>
+        const btn = document.getElementById('btn-libros');
+        const menu = document.getElementById('menu-libros');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            menu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            menu.classList.remove('show');
+        });
+
+         document.addEventListener('DOMContentLoaded', () => {
+        
+        const iconoMenu = document.getElementById('menu-icon');
+        const listaNav = document.getElementById('nav-list');
+
+        if (iconoMenu && listaNav) {
+            iconoMenu.addEventListener('click', () => {
+                listaNav.classList.toggle('active');
+            });
+        }
+
+        const btnLibros = document.getElementById('btn-libros');
+        const menuLibros = document.getElementById('menu-libros');
+
+        if (btnLibros && menuLibros) {
+            btnLibros.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menuLibros.classList.toggle('show');
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>
